@@ -3,6 +3,9 @@ html body {
   position: relative;
   margin: 0px;
 }
+html body a {
+  text-decoration: none;
+}
 html body header {
   position: fixed;
   z-index: 100;
@@ -15,6 +18,9 @@ html body header {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 100%;
 }
 html body header .title {
@@ -47,15 +53,48 @@ html body header ul.menu {
   margin: 0px;
   padding: 0px;
 }
-html body header ul.menu li {
-  color: #000;
+html body header ul.menu > li {
   font-size: 1.6rem;
-  margin: 0px;
-  padding: 23px 15px;
+  height: 70px;
   /*background-color: #fff;*/
+}
+html body header ul.menu > li a {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 70px;
+  padding: 0px 15px;
+  white-space: nowrap;
+  color: #000;
+  font-weight: 900;
+}
+html body header ul.menu > li .menu_sub {
+  white-space: nowrap;
+  padding: 0;
+  position: absolute;
+  list-style-type: none;
+  background-color: lightcyan;
+}
+html body header ul.menu > li .menu_sub a {
+  -webkit-transition: 100ms all linear;
+  transition: 100ms all linear;
+  height: auto;
+  padding: 15px;
+  padding-right: 60px;
+}
+html body header ul.menu > li .menu_sub a:hover {
+  color: blue;
+  background-color: #fff;
+}
+html body header ul.menu > li:not(:last-child) > a:hover {
+  background-color: lightcyan;
 }
 html body header ul.menu > :last-child {
   background-color: #4b4be7;
+  height: 70px;
 }
 html body header ul.menu > :last-child a {
   font-size: 1.6rem;
@@ -85,7 +124,6 @@ html body main .bk {
 }
 html body main .background_img {
   position: relative;
-  position: absolute;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -112,9 +150,6 @@ html body main .background_img > div .img3 {
 }
 html body main .background_img > div .img3 .bkimg3 {
   width: 100%;
-  height: 100vh;
-  min-height: 100%;
-  max-height: 950px;
 }
 html body main .center_container {
   height: 325px;
@@ -163,11 +198,9 @@ html body main .center_container > div .bottun p {
   padding: 24px 37px;
   margin: 0px;
   border: solid 1px #ccc;
-  cursor: pointer;
   line-height: 1;
 }
 html body main .service_container {
-  background-color: #f0f;
   z-index: 11;
   position: absolute;
   height: 400px;
@@ -179,16 +212,33 @@ html body main .push_point {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  color: #fff;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
-html body main .push_point .icon {
+html body main .push_point_list .icon {
   border: solid 5px #000;
-  border-radius: 230px;
-  width: 230px;
-  height: 230px;
-  background-color: #ff0;
-  margin: 10px;
+  border-radius: 220px;
+  width: 220px;
+  height: 220px;
+  background-color: #fff;
+  margin: 20px;
+  margin-bottom: 10px;
+  color: #f0f;
+  font-size: 150px;
+  text-align: center;
+}
+html body main .push_point_list > h3 {
+  font-size: 2.5rem;
+  font-weight: 900;
+  text-align: center;
+  margin: 5px;
+}
+html body main .push_point_list > h4 {
+  max-width: 230px;
+  font-size: 1.6rem;
+  font-weight: 900;
+  margin: auto;
 }
 /*# sourceMappingURL=style.css.map */
