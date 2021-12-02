@@ -1,6 +1,9 @@
 @charset "UTF-8";
+* {
+  outline: solid 1px #f00;
+}
+
 html body {
-  position: relative;
   margin: 0px;
 }
 html body a {
@@ -9,25 +12,22 @@ html body a {
 html body header {
   position: fixed;
   z-index: 100;
-  color: #f0f;
   background-color: #fff;
-  /*黄色*/
+  color: #000;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   width: 100%;
+  /* ウィンドウ幅1200px以下でメニューを非表示→ハンバーガーボタン */
 }
 html body header .title {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  color: #000;
+  /* ウィンドウ幅1280px以下で下記を非表示にする */
 }
 html body header .title > div {
   margin: auto;
@@ -37,28 +37,73 @@ html body header .title-logo {
   height: 33px;
 }
 html body header .title-msg {
-  font-weight: 900;
   font-size: 1.4rem;
+  font-weight: 900;
 }
 html body header .title-msg strong {
   font-size: 1.8rem;
   font-weight: bolder;
 }
-html body header ul.menu {
+@media screen and (max-width: 1280px) {
+  html body header .title-msg {
+    display: none;
+  }
+  html body header .title > div {
+    height: 50px;
+  }
+}
+html body header .nav_btn {
+  display: none;
+  margin: 0;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+html body header .nav_btn > p {
+  position: relative;
+  margin: 0;
+  width: 50px;
+  height: 50px;
+}
+html body header .nav_btn > p::before, html body header .nav_btn > p::after {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  position: absolute;
+  content: "";
+  height: 2px;
+  width: 23px;
+  background-color: #2498b3;
+  left: calc(50% - 11.5px);
+}
+html body header .nav_btn > p::before {
+  top: 15px;
+}
+html body header .nav_btn > p::after {
+  bottom: 15px;
+}
+html body header .nav_btn > p > span {
+  font-size: 0;
+  height: 2px;
+  width: 23px;
+  background-color: #2498b3;
+  position: absolute;
+  top: calc(50% - 1px);
+  left: calc(50% - 11.5px);
+}
+html body header ul.nav_main {
   list-style-type: none;
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  /*background-color: #07f;*/
   margin: 0px;
   padding: 0px;
 }
-html body header ul.menu > li {
+html body header ul.nav_main > li {
   font-size: 1.6rem;
-  height: 70px;
-  /*background-color: #fff;*/
 }
-html body header ul.menu > li a {
+html body header ul.nav_main > li a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -66,53 +111,128 @@ html body header ul.menu > li a {
   display: -ms-flexbox;
   display: flex;
   height: 70px;
+  /* ウィンドウ幅1260px以下でpadding:10pxに変更 */
   padding: 0px 15px;
   white-space: nowrap;
   color: #000;
   font-weight: 900;
 }
-html body header ul.menu > li .menu_sub {
+@media screen and (max-width: 1260px) {
+  html body header ul.nav_main > li a {
+    padding: 0px 10px;
+  }
+}
+html body header ul.nav_main > li .nav_sub {
   white-space: nowrap;
   padding: 0;
   position: absolute;
   list-style-type: none;
   background-color: lightcyan;
 }
-html body header ul.menu > li .menu_sub a {
+html body header ul.nav_main > li .nav_sub a {
   -webkit-transition: 100ms all linear;
   transition: 100ms all linear;
   height: auto;
   padding: 15px;
   padding-right: 60px;
 }
-html body header ul.menu > li .menu_sub a:hover {
+html body header ul.nav_main > li .nav_sub a:hover {
   color: blue;
   background-color: #fff;
 }
-html body header ul.menu > li:not(:last-child) > a:hover {
+html body header ul.nav_main > li:not(:last-child) > a:hover {
   background-color: lightcyan;
 }
-html body header ul.menu > :last-child {
+html body header ul.nav_main > :last-child {
   background-color: #4b4be7;
   height: 70px;
 }
-html body header ul.menu > :last-child a {
+html body header ul.nav_main > :last-child a {
   font-size: 1.6rem;
   color: #fff;
 }
-html body main {
-  background-color: #777;
-  position: relative;
-  height: 950px;
-  margin-bottom: 200px;
-  /*
-  background-image:
-      url(../images/bg-hero1.png),
-      url(../images/bg-hero2.png),
-      url(../images/bg-hero3.png);
-  background-size: cover;
-  height: 100vh;
-  */
+@media screen and (max-width: 1200px) {
+  html body header ul.nav_main {
+    position: absolute;
+    display: none;
+    left: 0px;
+    background-color: #fff;
+    width: 100%;
+  }
+  html body header ul.nav_main > :last-child {
+    display: none;
+  }
+  html body header ul.nav_main > .nav_main_li {
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    position: relative;
+    width: 100%;
+    background-color: #fff;
+  }
+  html body header ul.nav_main > .nav_main_li > a {
+    display: block;
+    height: 100%;
+    position: relative;
+    padding: 12px;
+  }
+  html body header ul.nav_main > .nav_main_li:not(:nth-child(3)) > a::before, html body header ul.nav_main > .nav_main_li:not(:nth-child(3)) > a::after {
+    content: "";
+    background-color: #000;
+    position: absolute;
+    display: block;
+  }
+  html body header ul.nav_main > .nav_main_li:not(:nth-child(3)) > a::before {
+    width: 2px;
+    height: 24px;
+    top: calc((50px - 24px)/2);
+    right: calc((50px - 2px)/2);
+  }
+  html body header ul.nav_main > .nav_main_li:not(:nth-child(3)) > a::after {
+    width: 24px;
+    height: 2px;
+    top: calc((50px - 2px)/2);
+    right: calc((50px - 24px)/2);
+  }
+  html body header ul.nav_main > .nav_main_li:hover > a::before {
+    display: none;
+  }
+  html body header ul.nav_main > .nav_main_li > ul {
+    position: relative;
+  }
+  html body header ul.nav_main > .nav_main_li > ul > li > a {
+    padding-left: 25px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  html body header .nav_btn {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    right: 0px;
+  }
+  html body header .title-logo {
+    height: 30px;
+    margin: 10px;
+  }
+}
+html body header .nav_btn_open {
+  background-color: #2498b3;
+}
+html body header .nav_btn_open > p {
+  background-color: #2498b3;
+}
+html body header .nav_btn_open > p::before {
+  background-color: #fff;
+  top: 24px;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+html body header .nav_btn_open > p::after {
+  top: 24px;
+  background-color: #fff;
+  -webkit-transform: rotate(-135deg);
+          transform: rotate(-135deg);
 }
 html body main .bk {
   background-color: #000;
@@ -123,33 +243,54 @@ html body main .bk {
   top: 720px;
 }
 html body main .background_img {
+  background: url(/images/bg-hero3.png) fixed no-repeat center/cover;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: 700px;
+  height: 720px;
   width: 100%;
+  overflow: hidden;
 }
-html body main .background_img > div {
-  width: 100%;
-}
-html body main .background_img > div .img1 {
-  text-align: center;
+html body main .background_img .img1 {
   position: absolute;
   width: 100%;
   z-index: 2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
-html body main .background_img > div .img2 {
+html body main .background_img .img1 .bkimg1 {
   position: absolute;
+}
+html body main .background_img .img2 {
+  position: absolute;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   z-index: 1;
-  text-align: center;
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
-html body main .background_img > div .img3 {
+html body main .background_img .img2 .bkimg2 {
+  position: absolute;
+}
+html body main .background_img .img3 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   overflow: hidden;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
-html body main .background_img > div .img3 .bkimg3 {
-  width: 100%;
+html body main .background_img .img3 .bkimg3 {
+  position: absolute;
 }
 html body main .center_container {
   height: 325px;
@@ -189,8 +330,9 @@ html body main .center_container > div .bottun {
   padding: 0px 15px;
 }
 html body main .center_container > div .bottun p {
+  -webkit-transition: padding 300ms;
+  transition: padding 300ms;
   border-radius: 5px;
-  display: block;
   background-color: #4491af;
   font-size: 1.8rem;
   font-weight: 700;
@@ -203,42 +345,125 @@ html body main .center_container > div .bottun p {
 html body main .service_container {
   z-index: 11;
   position: absolute;
-  height: 400px;
-  width: 900px;
+  width: 100%;
   top: 500px;
-  right: calc(50% - 450px);
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
-html body main .push_point {
+html body main .service_container .push_point {
+  width: 1000px;
+  max-width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   color: #fff;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  margin: auto;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
-html body main .push_point_list .icon {
+html body main .service_container .push_point_list .icon {
   border: solid 5px #000;
   border-radius: 220px;
   width: 220px;
   height: 220px;
   background-color: #fff;
-  margin: 20px;
+  margin: 20px 10px;
   margin-bottom: 10px;
-  color: #f0f;
-  font-size: 150px;
-  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
-html body main .push_point_list > h3 {
+html body main .service_container .push_point_list .icon i {
+  color: #000;
+  font-size: 100px;
+}
+html body main .service_container .push_point_list > h3 {
   font-size: 2.5rem;
   font-weight: 900;
   text-align: center;
-  margin: 5px;
+  margin: auto;
 }
-html body main .push_point_list > h4 {
-  max-width: 230px;
+html body main .service_container .push_point_list > h4 {
+  width: 230px;
   font-size: 1.6rem;
   font-weight: 900;
   margin: auto;
+}
+@media screen and (max-width: 767px) {
+  html body main .background_img {
+    position: absolute;
+  }
+  html body main .background_img img {
+    width: auto;
+    height: 320px;
+    margin-top: 20px;
+  }
+  html body main .center_container {
+    height: auto;
+    width: 100%;
+    top: 210px;
+    left: 0px;
+    border-radius: 0px;
+    position: relative;
+  }
+  html body main .center_container > div {
+    padding: 10px 0px;
+  }
+  html body main .center_container > div .center_logo {
+    display: none;
+  }
+  html body main .center_container > div .center_msg {
+    margin-top: 0px;
+  }
+  html body main .center_container > div .center_msg > p {
+    font-size: 1.3rem;
+  }
+  html body main .center_container > div .bottun {
+    height: auto;
+    margin: 10px auto;
+    width: 235px;
+  }
+  html body main .center_container > div .bottun > a > p {
+    font-size: 1.6rem;
+    padding: 12px 18px;
+  }
+  html body main .service_container {
+    background-color: #000;
+    padding: 40px 0px;
+    width: 100%;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    top: 210px;
+    position: relative;
+  }
+  html body main .service_container .push_point {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  html body main .service_container .push_point_list {
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 35px;
+  }
+  html body main .service_container .push_point_list .icon {
+    margin: auto;
+  }
+  html body main .service_container .push_point_list h3 {
+    margin: 10px 0px;
+  }
+  html body main .service_container .push_point_list h4 {
+    white-space: wrap;
+    width: auto;
+  }
 }
 /*# sourceMappingURL=style.css.map */
