@@ -95,3 +95,49 @@ $(window).resize(function() {
     //     $(".nav_main_close").stop().slideUp(150);
     //     }
 });
+
+// if (window.matchMedia("(min-width: 767px)").matches) {
+class ParallaxEffectBackground {
+    constructor() {
+    this.devided = 1.5;
+    this.target = '.img2';
+    this.setBackgroundPosition();
+    }
+
+    getScrollTop() {
+    return Math.max(
+        window.pageYOffset,
+        document.documentElement.scrollTop,
+        document.body.scrollTop,
+        window.scrollY
+    );
+    }
+
+    setBackgroundPosition() {
+    document.addEventListener('scroll', e => {
+        const scrollTop = this.getScrollTop();
+        const position = scrollTop / this.devided;
+        if (position) {
+        document.querySelectorAll(this.target).forEach(element => {
+            element.style.backgroundPosition = 'center top -' + position + 'px';
+        });
+        }
+    });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', event => {
+    new ParallaxEffectBackground();
+});
+// }
+
+// function getScrollTop(){
+    // if($(window).scrollTop()=="0"){
+// }
+    $(window).on("load scroll", function(){
+        if($(window).scrollTop() <= 0) {
+    // }
+    // else{
+    $(".img2").css("background-position" , "center top +20px")
+    }
+    });

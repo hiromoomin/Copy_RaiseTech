@@ -1,9 +1,6 @@
 @charset "UTF-8";
-* {
-  outline: solid 1px #f00;
-}
-
 html body {
+  font-family: "Noto Sans JP", MyYuGothicM, YuGothic, -apple-system, BlinkMacSystemFont, "Hiragino kaku Gothic ProN", Meiryo, Verdana, arial, helvetica, sans-serif;
   margin: 0px;
 }
 html body a {
@@ -39,6 +36,7 @@ html body header .title-logo {
 html body header .title-msg {
   font-size: 1.4rem;
   font-weight: 900;
+  color: #000;
 }
 html body header .title-msg strong {
   font-size: 1.8rem;
@@ -127,7 +125,7 @@ html body header ul.nav_main > li .nav_sub {
   padding: 0;
   position: absolute;
   list-style-type: none;
-  background-color: lightcyan;
+  background-color: #e9f8fb;
 }
 html body header ul.nav_main > li .nav_sub a {
   -webkit-transition: 100ms all linear;
@@ -137,14 +135,14 @@ html body header ul.nav_main > li .nav_sub a {
   padding-right: 60px;
 }
 html body header ul.nav_main > li .nav_sub a:hover {
-  color: blue;
+  color: #77cfcf;
   background-color: #fff;
 }
 html body header ul.nav_main > li:not(:last-child) > a:hover {
   background-color: lightcyan;
 }
 html body header ul.nav_main > :last-child {
-  background-color: #4b4be7;
+  background-color: #369bad;
   height: 70px;
 }
 html body header ul.nav_main > :last-child a {
@@ -202,6 +200,11 @@ html body header ul.nav_main > :last-child a {
   }
   html body header ul.nav_main > .nav_main_li > ul > li > a {
     padding-left: 25px;
+    background-color: #fff;
+  }
+  html body header ul.nav_main > .nav_main_li > ul > li > a:hover {
+    color: #000;
+    background-color: lightcyan;
   }
 }
 @media screen and (max-width: 1200px) {
@@ -267,12 +270,14 @@ html body main .background_img .img1 .bkimg1 {
   position: absolute;
 }
 html body main .background_img .img2 {
-  position: absolute;
+  background: url(/images/bg-hero2.png) fixed center top/2000px 800px no-repeat;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   z-index: 1;
-  width: 100%;
+  width: 2000px;
+  height: 800px;
+  overflow: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -399,6 +404,10 @@ html body main .service_container .push_point_list > h4 {
 @media screen and (max-width: 767px) {
   html body main .background_img {
     position: absolute;
+  }
+  html body main .background_img .img2 {
+    background-size: auto 320px;
+    background-position-y: 20px;
   }
   html body main .background_img img {
     width: auto;
